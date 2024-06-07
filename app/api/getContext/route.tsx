@@ -11,7 +11,9 @@ type Params = {
 };
 
 export async function GET(request: Request, context: { params: Params }) {
-  const question = "how do I create a matter?"; //context.params.question;
+  console.log(context);
+  const url = new URL(request.url);
+  const question = url.searchParams.get('question') || "default question if not provided";
 
   const client = new DataAPIClient(ASTRA_DB_APPLICATION_TOKEN!);
   const db = client.db(ASTRA_DB_API_ENDPOINT!);

@@ -16,7 +16,7 @@ export default function Chat() {
     if (input.trim() !== '') {
       setMessages([...messages, { text: input, sender: 'user' }]);
 
-      const response = await fetch(`/api/getContext?question=${input}`);
+      const response = await fetch(`/api/getContext?question=${encodeURIComponent(input)}`);
       const data = await response.json();
       
       console.log(response);
